@@ -73,7 +73,7 @@ export default [
           icon: '_qq',
           title: '示例页面'
         },
-        component: () => import('@/view/example/user-page.vue')
+        component: () => import('@/view/example/user.vue')
       }
     ]
   },

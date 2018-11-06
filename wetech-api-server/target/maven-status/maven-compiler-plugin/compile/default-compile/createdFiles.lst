@@ -1,8 +1,0 @@
-tech\wetech\myapp\config\MyBatisConfig.class
-tech\wetech\myapp\core\utils\MyMapper.class
-tech\wetech\myapp\core\utils\BaseController.class
-tech\wetech\myapp\config\WebMvcConfig.class
-tech\wetech\myapp\modules\example\api\UserController.class
-tech\wetech\myapp\modules\example\po\User.class
-tech\wetech\myapp\modules\example\mapper\UserMapper.class
-tech\wetech\myapp\MyAppApplication.class
