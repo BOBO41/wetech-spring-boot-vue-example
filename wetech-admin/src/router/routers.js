@@ -58,6 +58,24 @@ export default [
       href: 'https://lison16.github.io/iview-admin-doc/#/',
       icon: 'ios-book'
     }
+  },{
+    path: '/example',
+    name: '示例页面',
+    component: Main,
+    meta: {
+      hideInBread: true
+    },
+    children: [
+      {
+        path: 'user',
+        name: 'example',
+        meta: {
+          icon: '_qq',
+          title: '示例页面'
+        },
+        component: () => import('@/view/example/user-page.vue')
+      }
+    ]
   },
   {
     path: '/join',

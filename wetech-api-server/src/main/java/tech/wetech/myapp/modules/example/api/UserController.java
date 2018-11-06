@@ -6,7 +6,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tech.wetech.myapp.core.utils.BaseController;
 import tech.wetech.myapp.core.utils.PageResultSet;
@@ -22,7 +21,6 @@ import java.util.List;
  * @author cjbi
  */
 @RestController
-@RequestMapping("user")
 @Api(description = "用户接口")
 public class UserController extends BaseController {
 
@@ -32,14 +30,14 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/{pageNum}/{pageSize}")
+    @GetMapping("/user/{pageNum}/{pageSize}")
     @ApiOperation("测试分页查询用户")
     public List<User> queryUserList(@PathVariable Integer pageNum, @PathVariable Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         return userMapper.selectAll();
     }
 
-    @GetMapping("/list")
+    @GetMapping("/users")
     @ApiOperation("分页查询用户")
     public PageResultSet<UserPageResultVO> queryByPage(UserPageParamVO userPageParamVO) {
         return userService.queryByPage(userPageParamVO);
