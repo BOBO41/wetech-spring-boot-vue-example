@@ -9,10 +9,18 @@
           <Button style="margin: 5px;" type="primary" icon="md-download" @click="exportExcel">导出为Csv文件</Button>
           <Button style="margin: 5px;" type="success" @click="createModel = true" icon="md-add">新增</Button>
           <Button style="margin: 5px;" type="info" @click="handleSearch" icon="md-search">查询</Button>
-          <Modal title="Title" v-model="createModel" :loading="loading" :mask-closable="false">
-            <p>Content of dialog</p>
-            <p>Content of dialog</p>
-            <p>Content of dialog</p>
+          <Modal title="新增用户" v-model="createModel" :loading="loading" @on-ok="handleSubmit('userCreate')" :mask-closable="false">
+            <Form ref="userCreate" :model="userCreate" :label-width="80" :rules="userCreateRule">
+              <FormItem label="用户名" prop="username">
+                <Input v-model.trim="userCreate.username" placeholder="请输入用户名" clearable style="width: auto"/>
+              </FormItem>
+              <FormItem label="密码" prop="password">
+                <Input v-model.trim="userCreate.password" placeholder="请输入密码" clearable style="width: auto"/>
+              </FormItem>
+              <FormItem label="是否锁定" prop="locked">
+                <i-switch v-model="userCreate.locked"/>
+              </FormItem>
+            </Form>
           </Modal>
         </Col>
       </Row>
@@ -24,7 +32,7 @@
 
 <script>
   import Tables from "_c/tables";
-  import {getUserPage} from "@/api/data";
+  import {getUserPage, updateUser, createUser, deleteUser} from "@/api/data";
 
   export default {
     name: "tables_page",
@@ -76,6 +84,20 @@
           pageSize: 10,
           pageNum: 1
         },
+        userCreate: {
+          username: "",
+          password: "",
+          locked: false
+
+        },
+        userCreateRule: {
+          username: [
+            {required: true, message: 'Please fill in the username.', trigger: 'blur'}
+          ],
+          password: [
+            {required: true, message: 'Please fill in the password.', trigger: 'blur'}
+          ],
+        },
         createModel: false,
         loading: true
       };
@@ -110,9 +132,19 @@
             this.total = res.data.total;
           }
         );
-      }
+      },
+      handleSubmit(name) {
+        this.$refs[name].validate((valid) => {
+          if (valid) {
+            this.$Message.success('Success!');
+            this.loading = false;
+          } else {
+            this.$Message.error('Fail!');
+            this.loading = false;
+          }
+        })
+      },
     },
-
     mounted() {
       getUserPage(this.queryParams).then(
         res => {
