@@ -1,54 +1,41 @@
 package tech.wetech.myapp.modules.example.vo;
 
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import tech.wetech.myapp.modules.example.po.User;
 
 /**
  * @author cjbi
  */
-public class UserPageResultVO {
+@ApiModel("用户分页返回对象")
+public class UserResultVO {
 
-    /**
-     * 编号
-     */
+    @ApiModelProperty("编号")
     private Long id;
 
-    /**
-     * 组织机构编号
-     */
+    @ApiModelProperty("组织机构编号")
     private Long organizationId;
 
-    /**
-     * 用户名
-     */
+    @ApiModelProperty("用户名")
     private String username;
 
-    /**
-     * 密码
-     */
+    @ApiModelProperty("密码")
     private String password;
 
-    /**
-     * 盐值
-     */
+    @ApiModelProperty("盐值")
     private String salt;
 
-    /**
-     * 角色列表
-     */
+    @ApiModelProperty("角色列表")
     private String roleIds;
 
-    /**
-     * 组列表
-     */
+    @ApiModelProperty("组列表")
     private String groupIds;
 
-    /**
-     * 是否锁定
-     */
+    @ApiModelProperty("是否锁定")
     private Boolean locked;
 
-    public UserPageResultVO(User user) {
+    public UserResultVO(User user) {
         this.id = user.getId();
         this.organizationId = user.getOrganizationId();
         this.username = user.getUsername();

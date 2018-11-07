@@ -10,6 +10,8 @@ import tech.wetech.myapp.core.utils.BaseController;
 import tech.wetech.myapp.modules.example.vo.LoginParamVO;
 import tech.wetech.myapp.modules.example.vo.LoginResultVO;
 
+import javax.validation.Valid;
+
 /**
  * @author cjbi
  */
@@ -19,7 +21,7 @@ public class HomeController extends BaseController {
 
     @PostMapping("/login")
     @ApiOperation("登录")
-    public LoginResultVO login(@RequestBody LoginParamVO paramVO) {
+    public LoginResultVO login(@RequestBody @Valid LoginParamVO paramVO) {
         logger.info(paramVO.getUserName());
         return new LoginResultVO("super_admin");
     }

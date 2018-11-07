@@ -1,6 +1,29 @@
 import axios from '@/libs/api.request'
 
-export const getUserData = (params) => {
+export const deleteUser = (userId) => {
+  return axios.request({
+    url: '/user/' + userId,
+    method: 'delete'
+  })
+}
+
+export const createUser = (data) => {
+  return axios.request({
+    url: '/user',
+    method: 'post',
+    data: data
+  })
+}
+
+export const updateUser = (data) => {
+  return axios.request({
+    url: '/user',
+    method: 'put',
+    data: data
+  })
+}
+
+export const getUserPage = (params) => {
   return axios.request({
     url: '/users',
     method: 'get',

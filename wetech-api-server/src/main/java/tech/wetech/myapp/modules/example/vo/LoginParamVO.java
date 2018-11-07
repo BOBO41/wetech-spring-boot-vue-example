@@ -3,6 +3,8 @@ package tech.wetech.myapp.modules.example.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @author cjbi
  */
@@ -10,9 +12,11 @@ import io.swagger.annotations.ApiModelProperty;
 public class LoginParamVO {
 
     @ApiModelProperty("用户名")
+    @NotNull
     String userName;
 
     @ApiModelProperty("密码")
+    @NotNull
     String password;
 
     public String getUserName() {
