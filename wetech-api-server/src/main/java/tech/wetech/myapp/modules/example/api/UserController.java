@@ -46,14 +46,14 @@ public class UserController extends BaseController {
 
     @PostMapping("/user")
     @ApiOperation("创建用户")
-    public Result<UserCreateVO> createUser(@Valid UserCreateVO userCreateVO) {
+    public Result<UserCreateVO> createUser(@Valid @RequestBody UserCreateVO userCreateVO) {
         userService.createUser(userCreateVO);
-        return Result.success(userCreateVO);
+        return Result.success();
     }
 
     @PutMapping("/user")
     @ApiOperation("更新用户")
-    public Result<UserUpdateVO> updateUser(@Valid UserUpdateVO userUpdateVO) {
+    public Result<UserUpdateVO> updateUser(@Valid @RequestBody UserUpdateVO userUpdateVO) {
         userService.updateUser(userUpdateVO);
         return Result.success();
     }

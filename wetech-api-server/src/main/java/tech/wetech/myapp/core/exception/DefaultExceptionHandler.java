@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +14,9 @@ import tech.wetech.myapp.core.utils.ResultCodeEnum;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * @author cjbi
+ */
 @ControllerAdvice
 public class DefaultExceptionHandler {
 
@@ -50,11 +53,17 @@ public class DefaultExceptionHandler {
      * @return
      */
     @ResponseBody
-    @ExceptionHandler({BindException.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class, BindException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Result handleBindException(HttpServletRequest request, BindException e, BindingResult br) {
+    public Result handleNotValidException(HttpServletRequest request, Exception e) {
         LOGGER.error("execute methond exception error.url is {}", request.getRequestURI(), e);
-        return Result.failure(br);
+        if (e instanceof BindException) {
+            return Result.failure(((BindException) e).getBindingResult());
+        }
+        if (e instanceof MethodArgumentNotValidException) {
+            return Result.failure(((MethodArgumentNotValidException) e).getBindingResult());
+        }
+        return Result.failure(e, ResultCodeEnum.INTERNAL_SERVER_ERROR);
     }
 
 }
