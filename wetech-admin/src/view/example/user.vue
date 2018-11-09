@@ -5,7 +5,7 @@
         <Col span="8">
           <div>用户名：<Input v-model.trim="queryParams.username" placeholder="请输入用户名" clearable style="width: auto"/></div>
         </Col>
-        <Col span="6" offset="10" style="text-align: right;">
+        <Col span="10" offset="6" style="text-align: right;">
           <Button style="margin: 5px;" type="primary" icon="md-download" @click="exportExcel">导出为Csv文件</Button>
           <Button style="margin: 5px;" type="success" @click="userModel = true" icon="md-add">新增</Button>
           <Button style="margin: 5px;" type="info" @click="handleSearch" icon="md-search">查询</Button>
