@@ -49,7 +49,21 @@
           {title: "编号", key: "id", sortable: true},
           {title: "用户名", key: "username", sortable: true},
           {title: "密码", key: "password", sortable: true},
-          {title: "是否锁定", key: "locked", editable: true}, {
+          {
+            title: "是否锁定", key: "locked",
+            render: (h, params) => {
+              const row = params.row;
+              const color = row.locked === true ? 'primary' : 'success';
+              const text = row.locked === true ? '是' : '否';
+
+              return h('Tag', {
+                props: {
+                  type: 'dot',
+                  color: color
+                }
+              }, text);
+            }
+          }, {
             title: '操作',
             key: 'action',
             align: 'center',
