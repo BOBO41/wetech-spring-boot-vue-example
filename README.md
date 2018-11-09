@@ -21,8 +21,8 @@ Maven | 项目构建管理 | 4.0.0 |  [http://maven.apache.org](http://maven.apa
 
 技术 | 名称 | 版本 |  官网
 ----|------|----|----
-Vue.js | 优秀的Javascript库 | 2.5.10 |  [https://cn.vuejs.org/](https://cn.vuejs.org/)
-iView Admin | 优秀的Javascript库 | 2.1.0 |  [https://admin.iviewui.com](https://admin.iviewui.com)
+Vue.js | MVVM框架 | 2.5.10 |  [https://cn.vuejs.org/](https://cn.vuejs.org/)
+iView Admin | 基于Vue.js的前端UI框架 | 2.1.0 |  [https://admin.iviewui.com](https://admin.iviewui.com)
 
 ### 软件需求
 
